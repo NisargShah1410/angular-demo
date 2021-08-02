@@ -45,7 +45,7 @@ jobs:
       with:
         app-name: sampleangular
         publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
-        package: '/home/runner/work/angular-demo/angular-demo/dist/deploy_dist'
+        package: './dist'
     
 
 
