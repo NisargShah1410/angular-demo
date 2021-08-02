@@ -33,19 +33,19 @@ jobs:
     - run: npm run build:ci 
     - run: npm run test:ci
     
-    - name : Archive build
-      if: success()
-      uses: actions/upload-artifact@v1
-      with:
-       name: deploy_dist
-       path: dist
+    #- name : Archive build
+     # if: success()
+      #uses: actions/upload-artifact@v1
+      #with:
+       #name: deploy_dist
+       #path: dist
     
     - name: Deploy Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
         app-name: sampleangular
         publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
-        package: '.'
+        package: '.dist/sampleangular'
         
     
 
