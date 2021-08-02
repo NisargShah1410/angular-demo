@@ -45,3 +45,15 @@ jobs:
       with:
        name: deploy_coverage
        path: coverage
+
+    - name: Deploy Azure WebApp
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: sampleangular
+        publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
+        package: './dist/package'
+    
+
+
+
+
