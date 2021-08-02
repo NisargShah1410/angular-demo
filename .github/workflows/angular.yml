@@ -45,6 +45,8 @@ jobs:
       with:
         app-name: sampleangular
         publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
+        package: './karma.conf.js'
+        
     
 
 
