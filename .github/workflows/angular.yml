@@ -39,19 +39,13 @@ jobs:
       with:
        name: deploy_dist
        path: dist
-    - name: Archive code coverage result
-      if: success()
-      uses: actions/upload-artifact@v1
-      with:
-       name: deploy_coverage
-       path: coverage
-
+    
     - name: Deploy Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
         app-name: sampleangular
         publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
-        package: './dist/package'
+        package: './dist/deploy-dist'
     
 
 
