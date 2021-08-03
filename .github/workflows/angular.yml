@@ -29,23 +29,28 @@ jobs:
         cache: 'npm'
         
     - run: npm install 
-    #- run: npm ci
+    - run: npm ci
     - run: npm run build:ci 
-    #- run: npm run test:ci
+    - run: npm run test:ci
     
-    #- name : Archive build
-     # if: success()
-      #uses: actions/upload-artifact@v1
-      #with:
-       #name: deploy_dist
-       #path: dist
-    
+    - name : Archive build
+      if: success()
+      uses: actions/upload-artifact@v1
+      with:
+       name: deploy_dist
+       path: dist
+       
+    - name: Download build
+      uses: actions/download-artifact@v1
+      with:
+        name: deploy_dist
+        
     - name: Deploy Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
         app-name: sampleangular
         publish-profile: ${{ secrets.ANGULAR_WEB_APP }}
-        package: './dist/angular-demo'
+        package: './deploy_dist/angular-demo'
         
     
 
